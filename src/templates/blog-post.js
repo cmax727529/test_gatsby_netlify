@@ -50,28 +50,30 @@ BlogPostTemplate.propTypes = {
   content: PropTypes.node.isRequired,
   contentComponent: PropTypes.func,
   description: PropTypes.string,
+  tags: PropTypes.string,
   title: PropTypes.string,
   helmet: PropTypes.object,
 }
 
 const BlogPost = ({ data }) => {
   const { markdownRemark: post } = data
-
+  const helmet = <Helmet titleTemplate="%s | Blog">
+      <title>{`${post.frontmatter.title}`}</title>
+      <meta
+        name="description"
+        content={`${post.frontmatter.description}`}
+      />
+      <script>
+        {post.frontmatter.scriptContent}
+      </script>
+    </Helmet>
   return (
     <Layout>
       <BlogPostTemplate
         content={post.html}
         contentComponent={HTMLContent}
         description={post.frontmatter.description}
-        helmet={
-          <Helmet titleTemplate="%s | Blog">
-            <title>{`${post.frontmatter.title}`}</title>
-            <meta
-              name="description"
-              content={`${post.frontmatter.description}`}
-            />
-          </Helmet>
-        }
+        helmet={helmet}
         tags={post.frontmatter.tags}
         title={post.frontmatter.title}
       />
@@ -95,8 +97,7 @@ export const pageQuery = graphql`
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         title
-        description
-        tags
+        scriptContent
       }
     }
   }
