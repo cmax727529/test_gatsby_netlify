@@ -6,6 +6,20 @@ media_folder: static/img
 public_folder: /img
 
 collections:
+  - name: "history"
+    label: "History"
+    files:
+      - file: "history1.md"
+        label: "chapter1"
+        name: "chapter1"
+        fields:
+          - {label: "Body", name: "body", widget: "markdown"}
+      - file: "history2.md"
+        label: "chapter2"
+        name: "chapter2"
+        fields:
+          - {label: "Body", name: "body", widget: "markdown"}
+
   - name: "blog"
     label: "Blog"
     folder: "src/pages/blog"
