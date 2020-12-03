@@ -13,11 +13,13 @@ collections:
         label: "chapter1"
         name: "chapter1"
         fields:
+          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "history-page"}
           - {label: "Body", name: "body", widget: "markdown"}
       - file: "history2.md"
         label: "chapter2"
         name: "chapter2"
         fields:
+          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "history-page"}
           - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "blog"
